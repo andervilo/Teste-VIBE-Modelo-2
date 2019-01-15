@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{/layout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<title>Listar Contatos</title>
+</head>
+<body class="container">
+	<section layout:fragment="content">
+		<div class="row">
+					
+		</div>
+		<div class="panel panel-success" style="margin: 10px">
+			
+			
+			<div class="panel-body">
+				<h3 class="text-center">Despesa Detalhada</span></h3>
+				<table class="table table-condensed table-striped table-hover table-sm">
+					<tbody>
+					
+					</tbody>
+					<tr>
+						<td width="100"><img th:src="${deputado.urlFoto}" class="img-thumbnail" width="80"/></td>
+						<td>
+							<table>
+								<tbody>
+									<tr>
+										<td><b>Nome: </b><span class="" th:text="${deputado.nomeCivil}"></span></td>
+									</tr>
+									<tr>
+										<td><b>Data Nascimento: </b><span class="" th:text="${deputado.dataNascimento}"></span></td>
+									</tr>
+									<tr>
+										<td><b>Sexo: </b><span class="" th:text="${deputado.sexo}"></span></td>
+									</tr>
+									<tr>
+										<td><b>Partido: </b><span class="" th:text="${deputado.siglaPartido}"></span></td>
+									</tr>
+								</tbody>
+							</table>
+						</td>
+					</tr>
+				</table>
+				<table class="table table-condensed table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th  width="80%">Mês</th>
+							<th  width="10%">Total</th>
+							<th  width="10%"></th>
+						</tr>
+					</thead>
+					<tbody th:each="mes : ${deputado.despesasMeses}">
+						<tr >
+							<td >
+								<span th:text="${mes.nome}"></span>
+							</td>
+							<td >
+								R$ <span class="" th:text="${#numbers.formatDecimal(mes.total, 0, 'POINT', 2, 'COMMA')}"></span>
+							</td>
+							<td>							
+								<button th:onclick="'esconderLinha(\'' + ${mes.numero} + '\')'">Detalhar</button>
+							</td>
+							
+						</tr>
+						<tr th:id="${mes.numero}" style="display: none">
+							<td colspan="3" >
+								<table  class="table table-condensed">
+									<thead>
+										<tr>
+											<th width="65%">Tipo de despesa</th>
+											<th width="15%">Tipo de Documento</th>
+											<th width="10%">Data</th>
+											<th width="10%">Valor Líquido</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr th:each="despesa : ${mes.despesasMes}">
+											<td >
+												<span class="" th:text="${despesa.tipoDespesa}"></span>
+											</td>
+											<td >
+												<span class="" th:text="${despesa.tipoDocumento}"></span>
+											</td>
+											<td >
+												<span class="" th:text="${despesa.dataDocumento}"></span>
+											</td>
+											<td >
+												R$ <span class="" th:text="${#numbers.formatDecimal(despesa.valorLiquido, 0, 'POINT', 2, 'COMMA')}"></span>
+											</td>
+										</tr>
+									</tbody>
+								</table>								
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<script type="text/javascript" th:src="@{/js/jquery.js}"></script>
+		<script type="text/javascript">
+			function esconderLinha(idDaLinha) {	
+			    // procura o elemento com o ID passado para a função e coloca o estado para o contrario do estado actual
+			    $("#" + idDaLinha).toggle();
+			}
+		</script>
+	</section>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="pt-br"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="@{/layout}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/bootstrap.css}">
+<title>Listar Contatos</title>
+</head>
+<body class="container">
+	<section layout:fragment="content">
+		<div class="row">
+					
+		</div>
+		<div class="panel panel-success" style="margin: 10px">
+			
+			
+			<div class="panel-body">
+			<h3 class="text-center">Lista de Deputados - Página <span th:text="${current}"></span> de <span th:text="${last}"></span></h3>
+				<table id="mytable" class="table table-condensed table-striped table-hover table-sm">
+					<thead>
+						<tr>
+							<th>Nome</th>
+							<th>Partido</th>
+							<th>UF</th>
+							<th>Total Despesas</th>
+							<th>Foto</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="deputado : ${deputados}">
+							<td th:hidden="${deputado.id}"></td>
+							<td >
+								<span class="" th:text="${deputado.nome}"></span>
+							</td>
+							<td >
+								<span class="" th:text="${deputado.siglaPartido}"></span>
+							</td>
+							<td >
+								<span class="" th:text="${deputado.siglaUf}"></span>
+							</td>
+							<td >
+								<span class="" th:text="${deputado.getTotalDespesas()}"></span>
+							</td>
+							<td>
+								<img th:src="${deputado.urlFoto}" class="img-thumbnail" width="60"/>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<nav aria-label="...">
+				  <ul class="pager">
+				    <li th:classappend="${current}-1 == 0? disabled : enabled" ><a  th:href="@{/deputados/}+${previous}">Anterior</a></li>
+				    <li th:classappend="${current}==${last} ? disabled : enabled"><a th:href="@{/deputados/}+${next}">Próxima</a></li>
+				  </ul>
+				</nav>
+			</div>
+		</div>
+		
+	</section>
+</body>
+</html>
