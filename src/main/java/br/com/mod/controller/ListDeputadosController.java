@@ -1,24 +1,13 @@
 package br.com.mod.controller;
 
-import static org.assertj.core.api.Assertions.in;
-
-import java.time.Duration;
-import java.util.Iterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.com.mod.bean.DeputadoSimples;
-import br.com.mod.bean.Link;
 import br.com.mod.model.DeputadoResponse;
-import br.com.mod.repository.RepositoryListDeputados;
 import br.com.mod.service.DeputadoService;
 
 @Controller
@@ -29,21 +18,6 @@ public class ListDeputadosController {
 	private DeputadoService dsr;
 	private DeputadoResponse dpr = null;
 	
-	
-	/*private RepositoryListDeputados rld;
-	private DeputadoResponse dpr;
-	
-	ListDeputadosController() {
-		this.rld = new RepositoryListDeputados();
-		this.dpr = new DeputadoResponse();
-	}*/
-	
-	/*@GetMapping
-	public ModelAndView getAll(){
-		ModelAndView mv = new ModelAndView("/Contatos/Listar");
-		mv.addObject("contatos", cri.getAll());		
-		return mv;
-	}*/
 	
 	@GetMapping("/{pagina}")
 	
