@@ -65,10 +65,10 @@ public class ListDeputadosController {
 		return mv;
 	}
 	
-	@GetMapping
-	public String index() {
-		return "redirect:/deputados";
-	}
+//	@GetMapping
+//	public String index() {
+//		return "redirect:/deputados";
+//	}
 	
 	
 
