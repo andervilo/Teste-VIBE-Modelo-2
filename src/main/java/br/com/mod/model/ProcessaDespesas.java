@@ -78,11 +78,11 @@ public class ProcessaDespesas {
 
 	public double getTotalDespesas(){
 		double total = 0.0;
-		int total_pages = this.repodesp.getDespesasAno(idDeputado, idLegislatura, 1, 2018).last();
+		int total_pages = this.repodesp.getDespesasAno(idDeputado, idLegislatura, 1, 2019).last();
 		List<Despesa> despesas = new ArrayList<>();
 		List<Integer> range = IntStream.rangeClosed(1, total_pages).boxed().collect(Collectors.toList());
 		
-		range.forEach((page)-> despesas.addAll(this.repodesp.getDespesasAno(this.idDeputado, this.idLegislatura, page, 2018).getDados()));
+		range.forEach((page)-> despesas.addAll(this.repodesp.getDespesasAno(this.idDeputado, this.idLegislatura, page, 2019).getDados()));
 		
 		total = this.somaDespesas(despesas);
 		return total;
@@ -94,11 +94,11 @@ public class ProcessaDespesas {
 		List<Integer> listMeses = IntStream.rangeClosed(1, 12).boxed().collect(Collectors.toList());		
 		
 		listMeses.forEach((mes) -> {
-			int total_pages = this.repodesp.getDespesasMes(idDeputado, idLegislatura, 1, mes, 2018).last();				
+			int total_pages = this.repodesp.getDespesasMes(idDeputado, idLegislatura, 1, mes, 2019).last();				
 			List<Integer> range = IntStream.rangeClosed(1, total_pages).boxed().collect(Collectors.toList());
 			double total = 0.0;
 			List<Despesa> despesas = new ArrayList<>();
-			range.forEach((page)-> despesas.addAll(this.repodesp.getDespesasMes(this.idDeputado, this.idLegislatura, page, mes, 2018).getDados()));
+			range.forEach((page)-> despesas.addAll(this.repodesp.getDespesasMes(this.idDeputado, this.idLegislatura, page, mes, 2019).getDados()));
 			total = this.somaDespesas(despesas);
 			System.out.println(MesDescricao.values()[mes-1].toString() + ": " + despesas.size());
 			meses.add(new Mes(mes, MesDescricao.values()[mes-1].toString(), total, despesas));				
